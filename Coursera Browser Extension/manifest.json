@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Keyboard Shortcuts For Coursera",
+    "version": "1",
+  
+    "action": {
+        "default_title": "Click Me"
+    },
+    "description": "Alt -> Play/Pause, More to be added when needed",
+
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["content.js"]
+        }
+      ]
+}
