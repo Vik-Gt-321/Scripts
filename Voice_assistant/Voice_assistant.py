@@ -30,11 +30,50 @@ def wolf_search(q = "What is the weather like today?"):
     answer = next(res.results).text
     return answer
 
-def wiki_search(q = 'Putin'):
+def wiki_search():
+    q = "Vladimir Putin"
     results = wikipedia.search(q)
     page = wikipedia.page(results[1])
     content = page.content
-    return content
+    print(page.url, page.title)
+    # wikipedia.set_lang("fr")
 
 # print(wiki_search())
-spotify_search()
+# print(wolf_search())
+
+# Python program to translate
+# speech to text and text to speech
+
+
+import speech_recognition as sr
+import pyaudio
+
+p = pyaudio.PyAudio()
+
+# Get the default input device index
+default_device_index = p.get_default_input_device_info()['index']
+
+# Get the default input device info
+default_device_info = p.get_device_info_by_index(default_device_index)
+
+# Print the default input device info
+print("Default Input Device:")
+print("Name: ", default_device_info['name'])
+print("Channels: ", default_device_info['maxInputChannels'])
+print("Sample Rate: ", default_device_info['defaultSampleRate'])
+
+# Terminate PyAudio
+p.terminate()
+
+r = sr.Recognizer()
+print(pyaudio.get_default_input_device_info())
+with sr.Microphone() as source:
+    # read the audio data from the default microphone
+    audio_data = r.record(source, duration=5)
+    print("Recognizing...")
+    # convert speech to text
+    text = r.recognize_google(audio_data)
+    print(text)
+
+
+
